@@ -28,6 +28,13 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
+        - name: plex-data
+          persistentVolumeClaim:
+        {{- if .Values.data.plexMedia.claimName }}
+            claimName: {{ .Values.data.plexMedia.claimName }}
+        {{- else }}
+            claimName: {{ include "unicorn-plex.fullname" . }}-data
+        {{- end }}
         - name: plex-transcode
           persistentVolumeClaim:
         {{- if .Values.data.transcoding.claimName }}
@@ -68,6 +75,8 @@ spec:
           volumeMounts:
             - name: plex-transcode
               mountPath: /opt/UnicornTranscoder/cache
+            - name: plex-data
+              mountPath: /data
           # livenessProbe:
           #   httpGet:
           #     path: /api/sessions

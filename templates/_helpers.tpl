@@ -121,7 +121,10 @@ unicorn-trancoder: transcoder-controller
 
 
 {{- define "unicorn-plex.plex-advertise-ip" -}}
+{{- $lbIP := "" }}
+{{- if .Values.service.advertiseWithService -}}
 {{- $lbIP := join "" ( list "http://" .Values.service.loadbalancerIP ":" ( .Values.service.localPort | default .Values.service.port ) ) -}}
+{{- end -}}
 {{- $advertiseIPs := ( join "," .Values.plexAdvertiseIPs ) -}}
-{{- printf ( join "," ( list $lbIP $advertiseIPs ) | quote ) -}}
+{{- printf ( join "," ( without ( list $lbIP $advertiseIPs  ) "" ) | quote ) -}}
 {{- end -}}

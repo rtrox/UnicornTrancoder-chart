@@ -14,11 +14,6 @@ spec:
     - name: lb-port
       port: {{ .Values.service.port }}
       targetPort: lb-port
-  {{- if .Values.service.localPort }}
-    - name: lb-port-local
-      port: {{ .Values.service.localPort }}
-      targetPort: lb-port
-  {{- end }}
       protocol: TCP
     - name: plex-companion
       port: 3005

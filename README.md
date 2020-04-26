@@ -108,4 +108,5 @@ If you have a reverse proxy on your router (or your router is set to port forwar
 + *project-name*-transcoder-*number*.yourtranscodedomain.tld
 
 If your plex domain is the same as your transcode domain you can use the following regex:
+
 (?:.+\.)?plex.yourdomain.tld

@@ -16,6 +16,24 @@ spec:
   storageClassName: {{ .Values.data.plexConfig.storageClass | quote }}
 {{- end }}
 ---
+{{- end}}
+{{- if not (.Values.data.plexDB.claimName) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "unicorn-plex.fullname" . }}-db
+  labels:
+    {{- include "unicorn-plex.loadbalancerSelectorLabels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.data.plexDB.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.data.plexDB.size | quote }}
+{{- if .Values.data.plexDB.storageClass }}
+  storageClassName: {{ .Values.data.plexDB.storageClass | quote }}
+{{- end }}
+---
 {{- end }}
 {{- if not (.Values.data.plexMedia.claimName) }}
 apiVersion: v1

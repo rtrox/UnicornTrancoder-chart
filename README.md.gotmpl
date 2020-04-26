@@ -1,4 +1,5 @@
-{{ template "chart.header" . }}
+Unicorn Transcoder on K8s
+=========================
 {{ template "chart.description" . }}
 
 {{ template "chart.versionLine" . }}
@@ -20,7 +21,7 @@ In order to use this chart you must have at least the following installed on you
 + Have a plex claim token for the account you are adding the server to (Get one from https://plex.tv/claim)
 
 ### Installation
-+ Go into the values.yaml and using the Values section above an update to your configuration
++ Go into the values.yaml and using the Values section above an update to your configuration (be sure to update the ingress.annotations proxy-redirect-to value to your domain)
 + Verify that the plex server/loadbalancer pod is running
 + Verify you can access your Plex Server externally from the domain you used for Ingress
 + Follow the guide [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/) in order find you X-Plex-Token update your values.yaml to use the new X-Plex-Token
