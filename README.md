@@ -1,5 +1,5 @@
-unicorn-plex
-============
+Unicorn Transcoder on K8s
+=========================
 A Helm chart for deploying UnicornTranscoder on Kubernetes with the ability to automatically scale the transcoders as CPU load increases.
 
 Current chart version is `0.1.0`
@@ -92,7 +92,7 @@ In order to use this chart you must have at least the following installed on you
 + Have a plex claim token for the account you are adding the server to (Get one from https://plex.tv/claim)
 
 ### Installation
-+ Go into the values.yaml and using the Values section above an update to your configuration
++ Go into the values.yaml and using the Values section above an update to your configuration (be sure to update the ingress.annotations proxy-redirect-to value to your domain)
 + Verify that the plex server/loadbalancer pod is running
 + Verify you can access your Plex Server externally from the domain you used for Ingress
 + Follow the guide [here](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/) in order find you X-Plex-Token update your values.yaml to use the new X-Plex-Token
@@ -108,5 +108,4 @@ If you have a reverse proxy on your router (or your router is set to port forwar
 + *project-name*-transcoder-*number*.yourtranscodedomain.tld
 
 If your plex domain is the same as your transcode domain you can use the following regex:
-
 (?:.+\.)?plex.yourdomain.tld
